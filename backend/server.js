@@ -13,6 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 app.use("/items", require("./routes/itemRoutes")); 
+app.use("/users", require("./routes/userRoutes")); 
 
 app.use(errorHandler);
 
