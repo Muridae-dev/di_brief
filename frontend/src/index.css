@@ -1,0 +1,121 @@
+html, body {
+    background: black;
+    color:white;
+    height:100%;
+    padding:0;
+    margin:0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style-type: none;
+    position: relative;
+}
+
+li {
+    float:right;
+    position: relative;
+    margin-right:5em;
+}
+
+input {
+    height:2em;
+    border-radius: 0;
+}
+
+label {
+    height:2em;
+}
+
+.container {
+    width:100%;
+}
+
+.form-group {
+    height:auto;
+    width:40em;
+}
+
+.btn {
+    background: transparent;
+    width:auto;
+    height:3em;
+    border: 1px solid white;
+    color:white;
+    cursor:pointer;
+}
+
+.non-style-btn {
+    background:transparent;
+    border:none;
+    font-family: inherit;
+    font-size:inherit;
+    color:inherit;
+    width:auto;
+    height:auto;
+    padding:0;
+    box-sizing: none;
+}
+
+.header {
+    height:4em;
+    width:100%;
+    border-bottom:1px solid white;
+    position:relative;
+}
+
+.logo {
+    float:left;
+    
+}
+
+.heading {
+    height:4em;
+    width:100%;
+}
+
+.centerText {
+    position:relative;
+    top:50%;
+    left:2%;
+    transform:translate(0,-50%)
+}
+
+.item {
+    max-width: 30rem;
+    max-height: 30rem;
+    border: 1px solid white;
+    background:black;
+    color:white;
+    font-family: inherit;
+    font-size: unset;
+    padding:0;
+    float:left;
+    text-align:center;
+    margin:1em;
+
+    position:relative;
+
+}
+
+.close {
+    background:black;
+    border: 1px solid white;
+    color:white;
+    margin-bottom:5px;
+
+    position:absolute;
+    top:0;
+    left:100%;
+    transform:translate(calc(-100% + 1px),-1px);
+}
+
+.item-img {
+    max-width:25em;
+    max-height:20em;
+}
+
+.selected {
+    background:rgb(255, 106, 19);
+}

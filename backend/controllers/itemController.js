@@ -3,13 +3,23 @@ const asyncHandler = require("express-async-handler");
 const Item = require("../models/itemModel");
 const User = require("../models/userModel");
 
-// @desc       Get items
+// @desc       Get user items
 // @route       GET /items
 // @access      Private
 const getItem = asyncHandler(async (req, res) => {
     const items = await Item.find({ user: req.user.id });
 
+    console.log("get item ran")
+
     res.status(200).json(items)
+})
+
+const getAllItem = asyncHandler(async (req, res) => {
+    const allItems = await Item.find();
+
+    console.log("all items ran");
+
+    res.status(200).json(allItems)
 })
 
 // @desc       set items
@@ -21,11 +31,18 @@ const setItem = asyncHandler(async (req, res) => {
         throw new Error("please add a text")
     }
 
+    console.log(req.user)
+
     const item = await Item.create({
         text: req.body.text,
-        user: req.user.id
+        user: req.user.id,
+        username: req.user.name,
+        picture: req.file.path,
+        color: req.body.color,
+        tags: req.body.tags
     })
 
+    console.log(req.body);
     res.status(200).json(item)
 })
 
@@ -40,16 +57,14 @@ const updateItem = asyncHandler(async (req, res) => {
         throw new Error("Item not found");
     }
 
-    const user = await User.findById(req.user.id);
-
     // Check for user
-    if(!user) {
+    if(!req.user) {
         res.status(401);
         throw new Error("User not found");
     }
 
     // Make sure the logged in user matches the item user
-    if(item.user.toString() !== user.id) {
+    if(item.user.toString() !== req.user.id) {
         res.status(401);
         throw new Error("User not authorized");
     }
@@ -70,16 +85,14 @@ const deleteItem = asyncHandler(async (req, res) => {
         throw new Error("Item not found")
     }
 
-    const user = await User.findById(req.user.id);
-
     // Check for user
-    if(!user) {
+    if(!req.user) {
         res.status(401);
         throw new Error("User not found");
     }
 
     // Make sure the logged in user matches the item user
-    if(item.user.toString() !== user.id) {
+    if(item.user.toString() !== req.user.id) {
         res.status(401);
         throw new Error("User not authorized");
     }
@@ -95,4 +108,5 @@ module.exports = {
     setItem,
     updateItem,
     deleteItem,
+    getAllItem,
 }

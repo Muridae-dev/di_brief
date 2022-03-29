@@ -1,0 +1,22 @@
+TO ADD NEW PARAMETER TO ITEM:
+    itemModel.js
+    itemController.js
+    ItemForm.jsx
+
+REDUX:
+    - Is used as a sort of "localStorage", a way to store values and call them globally
+    HOOKS:
+        - createAsyncThunk
+            A way to deal with promise lifecycles:
+                - fulfilled     -pending    -rejected
+            Takes in a route for redux
+
+        - useDispatch()
+            A way to call on the redux store GLOBALLY
+            Also runs reducers
+
+
+... = destructuring an array(?) or object
+    - ...{a: "a", b: "b"} => a="a" b="b"
+
+In ItemsItem there might be something that breaks when deployed (currentUrl)
