@@ -12,6 +12,10 @@ const tradeSchema = mongoose.Schema({
     buyer: {
         type: String,
         required: true,
+    },
+    buyername: {
+        type: String,
+        required: true,
     }
 }, {
     timestamps: true,

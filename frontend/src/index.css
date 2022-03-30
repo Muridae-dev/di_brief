@@ -91,7 +91,6 @@ label {
     font-family: inherit;
     font-size: unset;
     padding:0;
-    float:left;
     text-align:center;
     margin:1em;
 
@@ -114,6 +113,24 @@ label {
 .item-img {
     max-width:25em;
     max-height:20em;
+}
+
+.items {
+    float:left;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 1px solid white;
+    padding:1rem;
+    max-width: 80%;
+    width:auto;
+}
+
+.flex-column-container {
+    display:flex;
+    flex-direction: column;
+    flex-wrap:wrap;
+    width:auto;
 }
 
 .selected {

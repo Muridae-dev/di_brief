@@ -7,6 +7,7 @@ function ItemsMain({item}) {
     const itemId = item._id;
     const seller = item.user;
     const buyer = store.getState().auth.user._id;
+    const buyername = store.getState().auth.user.name;
 
     const {trades} = useSelector((state) => state.trades)
     const isBuying = trades.some((trade) => (trade.buyer.includes(buyer) && itemId.includes(trade.itemId)))
@@ -22,7 +23,7 @@ function ItemsMain({item}) {
         <h2 style={{color: item.color}}>{item.text}</h2>
         <h4>{"Seller: " + item.username}</h4>
         <h5>Tags: {item.tags.map(element => element + " ")}</h5>
-        {buyer !== seller ? (!isBuying ? (<button className="btn" onClick={() => dispatch(createTrade({itemId, seller, buyer}))}>REQUEST TRADE</button>) : "REQUEST SENT") : (null)}
+        {buyer !== seller ? (!isBuying ? (<button className="btn" onClick={() => dispatch(createTrade({itemId, seller, buyer, buyername}))}>REQUEST TRADE</button>) : "REQUEST SENT") : (null)}
         
     </div>
     </>

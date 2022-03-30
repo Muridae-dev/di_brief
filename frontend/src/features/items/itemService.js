@@ -52,10 +52,24 @@ const deleteItem = async (itemId, token) => {
     return response.data;
 }
 
+// Update item
+const updateItem = async (itemData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    const response = await axios.put(API_URL + itemData._id, itemData, config);
+
+    return response.data;
+}
+
 const itemService = {
     createItem,
     getItems,
     deleteItem,
+    updateItem,
 }
 
 export default itemService;

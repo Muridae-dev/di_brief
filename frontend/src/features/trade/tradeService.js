@@ -29,9 +29,23 @@ const getTrade = async (token) => {
     return response.data;
 }
 
+// Delete trade
+const deleteTrade = async (tradeId, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    const response = await axios.delete(API_URL + tradeId, config);
+
+    return response.data;
+}
+
 const tradeService = {
     createTrade,
-    getTrade
+    getTrade,
+    deleteTrade,
 }
 
 export default tradeService;

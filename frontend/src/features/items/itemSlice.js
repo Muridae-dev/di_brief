@@ -46,6 +46,18 @@ export const deleteItem = createAsyncThunk("items/delete", async (id, thunkAPI) 
     }
 })
 
+// Edit item
+export const updateItem = createAsyncThunk("items/update", async (itemData, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token;
+        return await itemService.updateItem(itemData, token);
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        // Will reject and send error message as payload to the builder
+        return thunkAPI.rejectWithValue(message);
+    }
+})
+
 export const itemSlice = createSlice({
     name: "item",
     initialState,

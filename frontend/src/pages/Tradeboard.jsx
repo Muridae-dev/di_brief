@@ -5,6 +5,8 @@ import ItemsMain from "../components/ItemsMain";
 import Spinner from "../components/Spinner";
 import {getItems, reset as resetItems} from "../features/items/itemSlice";
 import {getTrade, reset as resetTrade} from "../features/trade/tradeSlice";
+import ItemsTrade from "../components/ItemTrade";
+import { LEFT } from "phaser";
 
 function Tradeboard() {
     const navigate = useNavigate();
@@ -37,16 +39,26 @@ function Tradeboard() {
         }
       }, [user, navigate, isError, message, dispatch])
 
-    return <>
-            <section>
+    return <div className="flex-column-container">
+            {itemsToBuy[0] ? (
+              <>
                 <h1>ITEMS TO BUY</h1>
-                {itemsToBuy.map((item) => <div>{item.text}</div>)}
-            </section>
-            <section>
+                <section className="items">
+                  {itemsToBuy.map((item) => <ItemsMain key={item._id} item={item}/>)}
+                </section>
+              </>
+            ) : null}
+
+            {itemsToSell[0] ? (
+              <>
                 <h1>ITEMS TO SELL</h1>
-                {itemsToSell.map((item) => <div>{item.text}</div>)}
-            </section>
-        </>
+                <section className="items">
+                    {itemsToSell.map((item) => <ItemsTrade key={item._id} item={item}/>)}
+                </section>
+              </>
+            ) : null}
+
+        </div>
   
 }
 
