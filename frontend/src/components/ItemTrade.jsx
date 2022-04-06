@@ -22,6 +22,7 @@ function ItemsTrade({item}) {
 
     console.log(updatedItem, item)
     dispatch(updateItem(updatedItem))
+    window.location.reload();
   }
 
   return (
@@ -33,7 +34,7 @@ function ItemsTrade({item}) {
         </div>
         <h2 style={{color: item.color}}>{item.text}</h2>
         <h4>{"Buyer: " + currentTrade[0].buyername}</h4>
-        {currentTrade ? (<button className="btn" onClick={fulfillTrade}>DO YOU WANT TO SELL????</button>) : null}
+        {currentTrade ? (<button className="btn" onClick={fulfillTrade}>ACCEPT TRADE</button>) : null}
         
     </div>
     </>
