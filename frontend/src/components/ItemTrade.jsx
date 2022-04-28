@@ -1,6 +1,8 @@
 import {useSelector, useDispatch} from "react-redux";
-import {deleteTrade} from "../features/trade/tradeSlice";
+import {getItems, reset as resetItems} from "../features/items/itemSlice";
+import {getTrade, deleteTrade, reset as resetTrade} from "../features/trade/tradeSlice";
 import {updateItem} from "../features/items/itemSlice";
+import {useEffect} from "react";
 
 function ItemsTrade({item}) {
   const dispatch = useDispatch();
@@ -9,7 +11,6 @@ function ItemsTrade({item}) {
   const {user} = useSelector((state) => state.auth)
   const currentTrade = trades.filter((trade) => (trade.seller.includes(user._id) && item._id.includes(trade.itemId)))
 
-  console.log(item)
   const fulfillTrade = () => {
     dispatch(deleteTrade(currentTrade[0]._id));
 
@@ -20,8 +21,8 @@ function ItemsTrade({item}) {
     updatedItem.user = currentTrade[0].buyer;
     updatedItem.username = currentTrade[0].buyername;
 
-    console.log(updatedItem, item)
     dispatch(updateItem(updatedItem))
+    window.location.reload();
   }
 
   return (
@@ -33,7 +34,7 @@ function ItemsTrade({item}) {
         </div>
         <h2 style={{color: item.color}}>{item.text}</h2>
         <h4>{"Buyer: " + currentTrade[0].buyername}</h4>
-        {currentTrade ? (<button className="btn" onClick={fulfillTrade}>DO YOU WANT TO SELL????</button>) : null}
+        {currentTrade ? (<button className="btn" onClick={() => fulfillTrade()}>ACCEPT TRADE</button>) : null}
         
     </div>
     </>

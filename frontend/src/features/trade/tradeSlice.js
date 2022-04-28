@@ -21,6 +21,7 @@ export const createTrade = createAsyncThunk("trade/create", async (tradeData, th
     }
 })
 
+
 // Get trades
 export const getTrade = createAsyncThunk("trade/get", async (_, thunkAPI) => {
     try {
